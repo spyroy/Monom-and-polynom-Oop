@@ -11,20 +11,23 @@ public class Monom_Comperator implements Comparator<Monom> {
 	}
 
 	// ******** add your code below *********
-	private double cofficient;
-	private int power;
 	
-	
-	public double compare2(Monom o1, Monom o2) {
-		double dc = o2.get_coefficient() - o1.get_coefficient();
+	public Double compare2(Monom o1, Monom o2) {
+		Double dc = o2.get_coefficient() - o1.get_coefficient();
 		return dc;
 	}
 	
-	public boolean equals (Monom m1) {
-		return true;
+	public boolean compare3 (Monom m1 , Monom m2) {
+		if (compare(m1,m2) == 0 && compare2(m1,m2) == 0) {
+			return true;
+		}
+		return false;
 	}
+
+	
 	
 	
 	
 
 }
+
