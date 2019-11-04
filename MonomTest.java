@@ -21,16 +21,15 @@ import java.util.Comparator;
  * 2) -1.3x isZero: false eq: true <br>
  * 3) -2.2x^2 isZero: false eq: true <br>
  * ***** Test3: ***** <br>
-0) 0    	de: 0  	add: 0        mu: 0 <br>
-1) -2.0    	de: 0  	add: -2.0        mu: 4.0 <br>
-2) -2.6x    	de: -2.6  	add: -2.6x        mu: 6.760000000000001x^2 <br>
-3) -4.4x^2    	de: -8.8x  	add: -4.4x^2        mu: 19.360000000000003x^4 <br>
+ * 0) 0 de: 0 add: 0 mu: 0 1) -2.0 de: 0 add: -2.0 mu: 4.0 2) -2.6x de: -2.6
+ * add: -2.6x mu: 6.760000000000001x^2 3) -4.4x^2 de: -8.8x add: -4.4x^2 mu:
+ * 19.360000000000003x^4
  */
 public class MonomTest {
 	public static void main(String[] args) {
 		test1();
 		test2();
-		test3();
+		mytest();
 	}
 
 	private static void test1() {
@@ -64,8 +63,25 @@ public class MonomTest {
 
 	}
 
-	private static void test3() {
-		System.out.println("*****  Test3:  *****");
+	private static void mytest() {
+		System.out.println("*****  mytest:  *****");
+		String[] goodmonoms = { "x", "-x", "x^5", "5" , "2x^2", "-3x"};
+		String[] badmonoms = { "z", "-", "x^-3", "--5" , "2x^y", ""};
+		for(int i = 0; i < 6; i++) {
+			Monom m = new Monom(goodmonoms[i]);
+			String s = m.toString();
+			m = new Monom(s);
+			System.out.println(i + ") " + m + "  should be good ");	
+		}
+		
+		for(int i = 0; i < 6; i++) {
+			Monom m1 = new Monom(badmonoms[i]);
+			String s1 = m1.toString();
+			m1 = new Monom(s1);	
+		}
+		System.out.println("6 errors expected");
+		
+		
 		ArrayList<Monom> monoms = new ArrayList<Monom>();
 		monoms.add(new Monom(0, 5));
 		monoms.add(new Monom(-1, 0));
@@ -81,4 +97,3 @@ public class MonomTest {
 
 	}
 }
-
