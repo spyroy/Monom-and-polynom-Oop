@@ -1,6 +1,9 @@
+
 package myMath;
 
 import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class represents a simple "Monom" of shape a*x^b, where a is a real
@@ -67,92 +70,137 @@ public class Monom implements function {
 
 	// ***************** add your code below **********************
 	public Monom(String s) {
-		String s1 = s;
+//		s = s.replaceAll(" ", "");
+//		String s1 = s;
+//
+//		if (s.equals("x") || s.equals("1x") || s.equals("1.0x")) {
+//			this._coefficient = 1;
+//			this._power = 1;
+//			return;
+//		}
+//
+//		if (s.equals("-x") || s.equals("-1x") || s.equals("-1.0x")) {
+//			this._coefficient = -1;
+//			this._power = 1;
+//			return;
+//		}
+//
+//		String[] S = s.split("x");
+//
+//		if (S.length <= 1) {
+//
+//			if (S.length == 0) {
+//				this._coefficient = 0;
+//				this._power = 0;
+//
+//			}
+//
+//			else {
+//				this._coefficient = Double.parseDouble(S[0]);
+//
+//				if (s1.contains("x"))
+//					this._power = 1;
+//
+//				else
+//					this._power = 0;
+//			}
+//
+//			try {
+//				Double.parseDouble(S[0]);
+//			}
+//
+//			catch (NumberFormatException e) {
+//				System.out.println("syntax error, the format need to be: ax^b where a is real nuber and b is natural");
+//			}
+//
+//		}
+//
+//		else {
+//
+//			if (!S[1].contains("^")) {
+//				throw new NumberFormatException(
+//						"syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
+//			}
+//
+//			String s2 = S[1];
+//			s2 = s2.substring(1);
+//
+//			try {
+//				Double.parseDouble(s2);
+//			} catch (NumberFormatException e) {
+//				System.out.println("syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
+//			}
+//
+//			if (!S[0].isEmpty() && S[0].charAt(0) == '-') {
+//
+//				if (S[0] == "-")
+//					this._coefficient = -1;
+//				this._power = Integer.parseInt(s2);
+//			}
+//
+//			if (S[0].isEmpty())
+//				this._coefficient = 0;
+//
+//			else {
+//				this._coefficient = Double.parseDouble(S[0]);
+//				this._power = Integer.parseInt(s2);
+//			}
+//		}
+		s = s.toLowerCase();
 
-		if (s.equals("x") || s.equals("1x") || s.equals("1.0x")) {
-			this._coefficient = 1;
-			this._power = 1;
-			return;
-		}
+		try {
 
-		if (s.equals("-x") || s.equals("-1x") || s.equals("-1.0x")) {
-			this._coefficient = -1;
-			this._power = 1;
-			return;
-		}
+			if (s.charAt(0) == '+' && s.charAt(1) == 'x')
+				s = "1" + s.substring(1);
 
-		String[] S = s.split("x");
+			if (s.charAt(0) == 'x')
+				s = "1" + s;
 
-		if (S.length <= 1) {
+			if (s.charAt(0) == '-' && s.charAt(1) == 'x')
+				s = "-1" + s.substring(1);
 
-			if (S.length == 0) {
-				this._coefficient = 0;
-				this._power = 0;
+			if (s.charAt(s.length() - 1) == 'x')
+				s += "^1";
 
+			String[] S = s.split("x\\^");
+
+			if (!(s.contains("x"))) {
+				this.set_coefficient(Double.parseDouble(S[0]));
+				this.set_power(0);
+				return;
+			}
+
+			if (Double.parseDouble(S[1]) < 0)
+				throw new RuntimeException();
+
+			if (S[0] == "0") {
+				this.set_coefficient(0);
+				this.set_power(0);
 			}
 
 			else {
-				this._coefficient = Double.parseDouble(S[0]);
-
-				if (s1.contains("x"))
-					this._power = 1;
-
-				else
-					this._power = 0;
-			}
-
-			try {
-				Double.parseDouble(S[0]);
-			}
-
-			catch (NumberFormatException e) {
-				System.out.println("syntax error, the format need to be: ax^b where a is real nuber and b is natural");
+				this.set_coefficient(Double.parseDouble(S[0]));
+				this.set_power(Integer.parseInt(S[1]));
 			}
 
 		}
 
-		else {
-
-			if (!S[1].contains("^")) {
-				throw new NumberFormatException("syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
-			}
-
-			String s2 = S[1];
-			s2 = s2.substring(1);
-
-			try {
-				Double.parseDouble(s2);
-			} catch (NumberFormatException e) {
-				System.out.println("syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
-			}
-
-			if (!S[0].isEmpty() && S[0].charAt(0) == '-') {
-
-				if (S[0] == "-")
-					this._coefficient = -1;
-				this._power = Integer.parseInt(s2);
-			}
-
-			if (S[0].isEmpty())
-				this._coefficient = 0;
-
-			else {
-				this._coefficient = Double.parseDouble(S[0]);
-				this._power = Integer.parseInt(s2);
-			}
+		catch (Exception error) {
+			System.err.println("Please insert Monom: ax^b (a,b parameters)");
 		}
+
 	}
 
 	public void add(Monom m) {
 		if (m.get_power() != this._power) {
 			throw new RuntimeException("can't add two different powers of monoms");
 		}
-		this._coefficient = m._coefficient + this._coefficient;
+		this.set_coefficient(m._coefficient + this._coefficient);
 	}
 
 	public void multipy(Monom d) {
-		this._coefficient = d._coefficient * this._coefficient;
-		this._power = d._power + this._power;
+		this.set_coefficient(d._coefficient * this._coefficient);
+		this.set_power(d._power + this._power);
 	}
 
 	public String toString() {
@@ -169,7 +217,7 @@ public class Monom implements function {
 
 	// ****************** Private Methods and Data *****************
 
-	private void set_coefficient(double a) {
+	void set_coefficient(double a) {
 		this._coefficient = a;
 	}
 
@@ -187,6 +235,12 @@ public class Monom implements function {
 	private double _coefficient;
 	private int _power;
 
-	
+	public static void main(String[] args) {
+		Monom m = new Monom("++X");
+		String s = m.toString();
+		m = new Monom(s);
+		double fx = m.f(2);
+		System.out.println(2 + ") " + m + "    \tisZero: " + m.isZero() + "\t f(" + 2 + ") = " + fx);
+	}
 
 }
