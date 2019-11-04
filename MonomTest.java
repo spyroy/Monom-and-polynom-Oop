@@ -57,7 +57,7 @@ public class MonomTest {
 			Monom m = new Monom(monoms.get(i));
 			String s = m.toString();
 			Monom m1 = new Monom(s);
-			boolean e = test.compare3(m1, m);
+			boolean e = test.compare4(m1, m);
 			System.out.println(i + ") " + m + "    \tisZero: " + m.isZero() + "  \teq: " + e);
 		}
 
