@@ -113,7 +113,7 @@ public class Polynom implements Polynom_able {
 	}
 
 	@Override
-	// not working  if p.cofficient = 1.
+	// not working  if p.cofficient = 1/0.
 	public void add(Monom m1) {
 		try {
 
@@ -122,10 +122,13 @@ public class Polynom implements Polynom_able {
 			Iterator<Monom> iter = p.iterator();
 			double a = 0;
 			int b = 0;
-
+			Monom o = new Monom (0,0);
 			while (iter.hasNext()) {
-				if (iter.next().get_power() == m1.get_power()) {
-					a = iter.next().get_coefficient() + m1.get_coefficient();
+				o = new Monom (iter.next());
+				if (o.get_power() == m1.get_power()) {
+					//if(iter.next().get_power() == 1)
+					
+					a = o.get_coefficient() + m1.get_coefficient();
 					b = m1.get_power();
 					Monom m2 = new Monom(a, b);
 					p.set(i, m2);
@@ -148,7 +151,7 @@ public class Polynom implements Polynom_able {
 	public void substract(Polynom_able p1) {
 		Iterator<Monom> iter = p1.iteretor();
 		while (iter.hasNext()) {
-			Monom tmp = new Monom(iter.next().get_coefficient(), iter.next().get_power() * -1);
+			Monom tmp = new Monom(iter.next().get_coefficient()*-1, iter.next().get_power() );
 			p.add(tmp);
 		}
 
@@ -172,8 +175,16 @@ public class Polynom implements Polynom_able {
 
 	@Override
 	public boolean equals(Polynom_able p1) {
-		// TODO Auto-generated method stub
-		return false;
+		Iterator<Monom> iter = p1.iteretor();
+		Iterator<Monom> iter2 = p.iterator();
+		Monom_Comperator comp = new Monom_Comperator();
+		while (iter.hasNext() && iter2.hasNext())
+		{
+			
+			if (comp.compare(iter.next(), iter2.next())!=0)
+				return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -221,9 +232,8 @@ public class Polynom implements Polynom_able {
 	}
 	
 	public String toString() {
-		//return for zero polynom
 				if (isZero() == true)
-					return "0x^0";
+					return "0";
 
 				String forPrint = "";
 				Iterator<Monom> it = p.iterator();
@@ -274,16 +284,17 @@ public class Polynom implements Polynom_able {
 	public static void main(String[] args) {
 		Polynom m = new Polynom("0");
 		m.isZero();
-		Polynom m2 = new Polynom("6x^5+x^4+2");
+		Polynom m2 = new Polynom("6x^5+x^4+2x");
 		//m.multiply(m2);
 		String s = m.toString();
 		double fx = m.f(2);
-		Monom m1 = new Monom(3, 5);
-		m.add(m1);
+		Monom m1 = new Monom(2, 1);
+		m2.add(m1);
+		s = m.toString();
 		//Polynom_able p1 = null;
 		//m.substract(p1);
 		m = new Polynom(s);
-		System.out.println(2 + ") " + m + "    \tisZero: " + m.isZero() + "\t f(" + 2 + ") = " + fx);
+		System.out.println(2 + ") " + m2 + "    \tisZero: " + m.isZero() + "\t f(" + 2 + ") = " + fx);
 	}
 
 }
