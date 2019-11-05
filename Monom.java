@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * This class represents a simple "Monom" of shape a*x^b, where a is a real
+ * This class represents a simple "Monom" of shape a*x^b (can't be empty), where a is a real
  * number and a is an integer (summed a none negative), see:
  * https://en.wikipedia.org/wiki/Monomial The class implements function and
  * support simple operations as: construction, value at x, derivative, add and
@@ -70,82 +70,6 @@ public class Monom implements function {
 
 	// ***************** add your code below **********************
 	public Monom(String s) {
-//		s = s.replaceAll(" ", "");
-//		String s1 = s;
-//
-//		if (s.equals("x") || s.equals("1x") || s.equals("1.0x")) {
-//			this._coefficient = 1;
-//			this._power = 1;
-//			return;
-//		}
-//
-//		if (s.equals("-x") || s.equals("-1x") || s.equals("-1.0x")) {
-//			this._coefficient = -1;
-//			this._power = 1;
-//			return;
-//		}
-//
-//		String[] S = s.split("x");
-//
-//		if (S.length <= 1) {
-//
-//			if (S.length == 0) {
-//				this._coefficient = 0;
-//				this._power = 0;
-//
-//			}
-//
-//			else {
-//				this._coefficient = Double.parseDouble(S[0]);
-//
-//				if (s1.contains("x"))
-//					this._power = 1;
-//
-//				else
-//					this._power = 0;
-//			}
-//
-//			try {
-//				Double.parseDouble(S[0]);
-//			}
-//
-//			catch (NumberFormatException e) {
-//				System.out.println("syntax error, the format need to be: ax^b where a is real nuber and b is natural");
-//			}
-//
-//		}
-//
-//		else {
-//
-//			if (!S[1].contains("^")) {
-//				throw new NumberFormatException(
-//						"syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
-//			}
-//
-//			String s2 = S[1];
-//			s2 = s2.substring(1);
-//
-//			try {
-//				Double.parseDouble(s2);
-//			} catch (NumberFormatException e) {
-//				System.out.println("syntax erorr, the format need to be: ax^b where a is real nuber and b is natural");
-//			}
-//
-//			if (!S[0].isEmpty() && S[0].charAt(0) == '-') {
-//
-//				if (S[0] == "-")
-//					this._coefficient = -1;
-//				this._power = Integer.parseInt(s2);
-//			}
-//
-//			if (S[0].isEmpty())
-//				this._coefficient = 0;
-//
-//			else {
-//				this._coefficient = Double.parseDouble(S[0]);
-//				this._power = Integer.parseInt(s2);
-//			}
-//		}
 		s = s.toLowerCase();
 
 		try {
@@ -239,12 +163,5 @@ public class Monom implements function {
 	private double _coefficient;
 	private int _power;
 
-	public static void main(String[] args) {
-		Monom m = new Monom("++X");
-		String s = m.toString();
-		m = new Monom(s);
-		double fx = m.f(2);
-		System.out.println(2 + ") " + m + "    \tisZero: " + m.isZero() + "\t f(" + 2 + ") = " + fx);
-	}
 
 }
