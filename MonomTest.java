@@ -76,7 +76,7 @@ public class MonomTest {
 		int k = 1;
 		
 		String[] goodmonoms = { "x", "-x", "x^5", "5" , "2x^2", "-3x" , "5.0x" , "5.0", "66.66x^6" , "-7.2x^5", "2x^0", "-10x"};
-		String[] badmonoms = { "z", "-", "x^-3", "--5" , "2x^y", "", "1.1x^^" , "++11", "+" , "^" , "-.", "." };
+		String[] badmonoms = { "++x", "-", "--x", "--5" , "2x^y", "", "1.1x^^" , "++11", "+" , "^" , "x^-3", "." };
 		
 		//checks if Monom has the right coefficient and power
 		System.out.println("1) checks if Monom has the right coefficient and power: 5.3x^11");
