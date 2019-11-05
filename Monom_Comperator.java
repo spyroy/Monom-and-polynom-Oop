@@ -2,6 +2,17 @@ package myMath;
 
 import java.util.Comparator;
 
+/** This implements stands to compare two monoms 
+ * 1) compare is the function that returns 0 if both coefficient and power are equal,
+ *  positive number o2 is bigger, and negative number else
+ * 2) compare2 is the function that returns 0 if the coefficient is equal, positive number
+ *  if o2 coefficient is bigger, negative number else
+ * 3) compare3 is the function that returns 0 if the power is equal, positive number
+ *  if o2 power is bigger, negative number else
+ * 4) compare4 is the function that returns true if both coefficient and power are equal
+ *  false else.
+**/
+
 public class Monom_Comperator implements Comparator<Monom> {
 
 	public Monom_Comperator() {;}
