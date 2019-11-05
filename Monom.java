@@ -193,7 +193,11 @@ public class Monom implements function {
 
 	public void add(Monom m) {
 		if (m.get_power() != this._power) {
-			throw new RuntimeException("can't add two different powers of monoms");
+			try {
+				throw new Exception("can't add two different powers of monoms");
+			} catch (Exception e) {
+				System.err.println("can't add two different powers of monoms");
+			}
 		}
 		this.set_coefficient(m._coefficient + this._coefficient);
 	}
