@@ -172,7 +172,7 @@ public class Polynom implements Polynom_able {
 		} catch (Exception error) {
 			System.err.println("not a good range, the range most be: f(x0)*f(x1)>0");
 		}
-		return eps / 10000000;
+		return eps;
 	}
 
 	@Override
@@ -199,11 +199,12 @@ public class Polynom implements Polynom_able {
 
 	@Override
 	public double area(double x0, double x1, double eps) {
+		//returns 0 if x1<x0
 		double answer = 0;
 		for (double i = x0; i <= x1; i += eps) {
 			answer += f(i);
 		}
-		return answer;
+		return answer/ 10000000;
 	}
 
 	@Override
