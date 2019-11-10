@@ -20,8 +20,8 @@ Polynom has 13 main function:
 4) add Monom, recives Monom and add it to another Polynom by Polynomial arithmetic. (https://en.wikipedia.org/wiki/Polynomial_arithmetic)
 5) subtract Polynom, recives Polynom and subtract it from another Polynom by Polynomial arithmetic. (https://en.wikipedia.org/wiki/Polynomial_arithmetic)
 6) multiply Polynom, recives Polynom and multiply it by another Polynom by Polynomial arithmetic. (https://en.wikipedia.org/wiki/Polynomial_arithmetic)
-7)equals, recives Polynom and checks if it equal to another Polynom, returns true if it does and false otherwise.
-8) is zero, is zero, returns if the the Polynom equals to - 0 or not.
+7) equals, recives Polynom and checks if it equal to another Polynom, returns true if it does and false otherwise.
+8) is zero, returns if the the Polynom equals to - 0 or not.
 9) root, returns the value which the function represented by the given Polynom gets zero.(https://en.wikipedia.org/wiki/Zero_of_a_function)
 10) copy, deep copy of the Polynom.
 11) derivative, recives a Polynom and returns the derivative. (https://en.wikipedia.org/wiki/Derivative)
