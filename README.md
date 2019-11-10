@@ -1,5 +1,6 @@
 this project deals with Monom and Polynom.
 *Monom: in this project Monom most be of shape +-ax\X^b where 'a' is double and 'b' Integer (https://en.wikipedia.org/wiki/Monomial)
+
 *Polynom:the shape of Polynom most be +-a_1x\X^b_1 +-a_2x\X^b_2... where each element is a Monom (https://en.wikipedia.org/wiki/Polynomial)
 
 Monom has 7 main function:
