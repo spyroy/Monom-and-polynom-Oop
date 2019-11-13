@@ -168,7 +168,7 @@ public class PolynomTest {
 		// tests area below the polynom using rimans integral
 		System.out.println("tests area below the polynom using rimans integral");
 		Polynom p21 = new Polynom("8x^3+5x^2+12");
-		double area = p21.area(2, 1, EPSILON);
+		double area = p21.area(1, 2, EPSILON);
 		System.out.println("area below " + p21.toString() + " equals " + area);
 		System.out.println();
 		
