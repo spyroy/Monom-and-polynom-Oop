@@ -22,10 +22,12 @@
 6) *multiply Polynom*, recives Polynom and multiply it by another Polynom by Polynomial arithmetic. (https://en.wikipedia.org/wiki/Polynomial_arithmetic)
 7) *equals*, recives Polynom and checks if it equal to another Polynom, returns true if it does and false otherwise.
 8) *is zero*, returns if the the Polynom equals to - 0 or not.
-9) *root*, returns the value which the function represented by the given Polynom gets zero.(https://en.wikipedia.org/wiki/Zero_of_a_function)
+9) *root*, returns the value, which the function represented by the given Polynom, gets zero (can only give one root between
+specific range). (https://en.wikipedia.org/wiki/Zero_of_a_function)
 10) *copy*, deep copy of the Polynom.
 11) *derivative*, recives a Polynom and returns the derivative. (https://en.wikipedia.org/wiki/Derivative)
-12) *area*, returns the area below the function represented by the given Polynom based on rimann's integral.(https://en.wikipedia.org/wiki/Riemann_integral)
+12) *area*, returns the area below the function represented by the given Polynom based on rimann's integral, returns 0 if x0
+is bigger then x1 in the given area. (https://en.wikipedia.org/wiki/Riemann_integral)
 13) *multiply Monom*, recives Monom and multiply it by another Polynom by Polynomial arithmetic.
 
 #### this project was written by @Matan_Greenberg (206094815) and @Or_Mendel (315524389).
