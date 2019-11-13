@@ -5,7 +5,7 @@
 ## Polynom:in this project Polynom most be of shape +-a_1x\X^b_1 +-a_2x\X^b_2... where each element is a Monom (https://en.wikipedia.org/wiki/Polynomial)
 
 ### Monom has 7 main function:
-1) ## constructor ##, recives two numbers: 'a' Double 'b' Integer and build a Monom with coefficient 'a' and power 'b'.
+1) *constructor* , recives two numbers: 'a' Double 'b' Integer and build a Monom with coefficient 'a' and power 'b'.
 2) derivative, recives a Monom and returns the derivative. (https://en.wikipedia.org/wiki/Derivative)
 3) f function, recives real number 'x' and returns the value of the Monom at - 'x' point.
 4) is zero, returns if the the Monom equals to - 0 or not.
