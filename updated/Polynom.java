@@ -204,7 +204,7 @@ public class Polynom implements Polynom_able {
 		for (double i = x0; i <= x1; i += eps) {
 			answer += f(i);
 		}
-		return answer/ 10000000;
+		return answer*eps;
 	}
 
 	@Override
