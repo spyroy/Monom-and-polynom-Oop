@@ -249,18 +249,20 @@ public class Polynom implements Polynom_able {
 
 	// example: F(x)=3x^2+5
 	public function initFromString(String s) {
-		try {
-			s = s.replaceAll(" ", "");
-			if (s.charAt(0) > 90 || s.charAt(0) < 65 || s.charAt(1) != '(' || s.charAt(2) != 'x' || s.charAt(3) != ')'
-					|| s.charAt(4) != '=') {
-				throw new Exception("please enter function at the form of: \"capital\" (x) = \"Monom\" ");
-			}
-			function f = new Polynom(s.substring(5));
-			return f;
-		} catch (Exception e) {
-			System.err.println("please enter function at the form of: \"capital\" (x) = \"Monom\" ");
-		}
-		return null;
+//		try {
+//			s = s.replaceAll(" ", "");
+//			if (s.charAt(0) > 90 || s.charAt(0) < 65 || s.charAt(1) != '(' || s.charAt(2) != 'x' || s.charAt(3) != ')'
+//					|| s.charAt(4) != '=') {
+//				throw new Exception("please enter function at the form of: \"capital\" (x) = \"Monom\" ");
+//			}
+//			function f = new Polynom(s.substring(5));
+//			return f;
+//		} catch (Exception e) {
+//			System.err.println("please enter function at the form of: \"capital\" (x) = \"Monom\" ");
+//		}
+//		return null;
+		Polynom pol = new Polynom(s);
+		return pol;
 
 	}
 
