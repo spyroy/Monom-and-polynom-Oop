@@ -10,7 +10,7 @@ class MonomTestt {
 	@Test
 	void testGetComp() {
 		Monom_Comperator test = new Monom_Comperator();
-		System.out.println("checks if initializing Monom using other Monom is equal to the Monom: 1.11x^12");
+		System.out.println("*checks if initializing Monom using other Monom is equal to the Monom: 1.11x^12");
 		Monom o = new Monom(1.11, 12);
 		Monom o2 = new Monom(o);
 		assertEquals(o.toString(), o2.toString());
@@ -18,32 +18,32 @@ class MonomTestt {
 		System.out.println("   is the monom are equal?     " + flag  + "  (should return true)\n");
 	}
 
-	@Test
-	void testMonombad() {
-		String[] badmonoms = { "++x", "-", "--x", "--5" , "2x^y", "", "1.1x^^" , "++11", "+" , "^" , "x^-3", "." };
-		System.out.println("test bad monoms, 13 error exceptions for bad monoms:");
-		for(String bad_monoms : badmonoms) {
-			Monom o = new Monom(bad_monoms);	
-		}
-		System.out.println("   13 error expected\n");
-	}
+//	@Test
+//	void testMonombad() {
+//		String[] badmonoms = { "++x", "-", "--x", "--5" , "2x^y", "", "1.1x^^" , "++11", "+" , "^" , "x^-3", "." };
+//		System.out.println("test bad monoms, 12 error exceptions for bad monoms:");
+//		for(String bad_monoms : badmonoms) {
+//			Monom o = new Monom(bad_monoms);	
+//		}
+//		System.out.println("   12 error expected\n");
+//	}
 
 	@Test
 	void testgoodMonom() {
-		String[] goodmonoms = { "x", "-x", "x^5", "5" , "2x^2", "-3x" , "5.0x" , "5.0", "66.66x^6" , "-7.2x^5", "2x^0", "-10x"};
-		System.out.println("printing all 12 good monoms:");
+		String[] goodmonoms = { "x", "-x", "x^5", "5" , "2x^2", "-3x" , "5.0x" , "5.0", "66.66x^6" , "-7.2x^5", "2x^0", "-10x",""};
+		System.out.println("*printing all 13 good monoms:");
 		int k =1 ;
 		for(String good_monoms : goodmonoms) {
 				Monom o = new Monom(good_monoms);
 				System.out.println("   "  + "good monom " + k + ":  " + o.toString());	
 				k++;
 		}
-		System.out.println("   12 monoms expected\n");
+		System.out.println("   13 monoms expected\n");
 	}
 
 	@Test
 	void testGet_coefficient() {
-		System.out.println("checks if Monom has the right coefficient : 5.3x^11");
+		System.out.println("*checks if Monom has the right coefficient : 5.3x^11");
 		Monom o = new Monom(5.3,11);
 		assertEquals(5.3,o.get_coefficient(),0.0000001);
 		boolean flag = (5.3 == o.get_coefficient());
@@ -52,7 +52,7 @@ class MonomTestt {
 
 	@Test
 	void testGet_power() {
-		System.out.println("checks if Monom has the right power : 5.3x^11");
+		System.out.println("*checks if Monom has the right power : 5.3x^11");
 		Monom o = new Monom(5.3,11);
 		assertEquals(11, o.get_power());
 		boolean flag1 = (11 == o.get_power());
@@ -62,7 +62,7 @@ class MonomTestt {
 	@Test
 	void testDerivative() {
 		Monom_Comperator test = new Monom_Comperator();
-		System.out.println("prints true of the derivative is correct:");
+		System.out.println("*prints true of the derivative is correct:");
 		Monom[] monom = {new Monom("7x^6"),new Monom("x^14"),new Monom("11.11x^0"),new Monom("1x^1"),new Monom("5.5"),new Monom("0")};
 		Monom[] dv = {new Monom("42x^5"),new Monom("14x^13"),new Monom("0"),new Monom("1"),new Monom("0"),new Monom("0")};
 		for(int i=0; i < monom.length;i++) {
@@ -74,7 +74,7 @@ class MonomTestt {
 
 	@Test
 	void testF() {
-		System.out.println("prints true if f function is working");
+		System.out.println("*prints true if f function is working");
 		double y = 3.2;
 		Monom o = new Monom("5.17x^2");
 		double result = 5.17*Math.pow(y, 2);
@@ -93,7 +93,7 @@ class MonomTestt {
 	@Test
 	void testAdd() {
 		Monom_Comperator test = new Monom_Comperator();
-		System.out.println("add two monoms if possible otherwise throws exception");
+		System.out.println("*add two monoms if possible otherwise throws exception");
 		Monom m3 = new Monom(2.4,3);
 		Monom m4 = new Monom(1.1,5);
 		Monom o = new Monom(5.8,3);
@@ -102,13 +102,13 @@ class MonomTestt {
 		assertEquals(new Monom(8.2,3).toString(),o.toString());
 		System.out.println("   " + tmp.toString() + " + " + m3.toString() +   "  = " + o.toString() + " ? " + test.compare4(o, new Monom(8.2,3)) + "  (should return true)");
 		o.add(m4);
-		System.out.println("   error expected: can't add\n");
+		System.out.println("   error expected: can't add");
 	}
 
 	@Test
 	void testMultipy() {
 		Monom_Comperator test = new Monom_Comperator();
-		System.out.println("multiply two monoms");
+		System.out.println("*multiply two monoms");
 		Monom m5 = new Monom(2.5,12);
 		Monom m6 = new Monom(1.1,9);
 		Monom m7 = new Monom(2.75,21);
@@ -121,7 +121,7 @@ class MonomTestt {
 	@Test
 	void testcompare() {
 		Monom_Comperator test = new Monom_Comperator();
-		System.out.println("compares between two monoms");
+		System.out.println("*compares between two monoms");
 		Monom m8 = new Monom ("9x^11");
 		Monom m9 = new Monom(9.0,11);
 		assertEquals(m8.toString(),m9.toString());
@@ -130,30 +130,34 @@ class MonomTestt {
 	
 	@Test
 	void testinitFromString() {
-		System.out.println("tests init from string");
+		System.out.println("*tests init from string");
 		Monom m = new Monom("");
-		 m.initFromString("F(x)=5");
-		System.out.println(m.toString());
+		 m = (Monom) m.initFromString("5x");
+		System.out.println(m.toString() + "\n");
+		Monom o = new Monom(5,1);
+		assertEquals(m.toString(), o.toString());
 		
 	}
 	
 	@Test
 	void testcopy() {
-		System.out.println("tests copy of monom");
+		System.out.println();
+		System.out.println("*tests copy of monom");
 		Monom m = new Monom (5,1);
-		Monom f = new Monom (m);
-		Monom d = (Monom) f.copy();
-		System.out.println(f);
-		System.out.println(d);
-		
+		function f = new Monom (m);
+		function d = f.copy();
+		System.out.print(f+"\t");
+		System.out.println(d+"\n");
+		assertEquals(m.toString(), d.toString());
 	}
 	
 	@Test
 	void testequals() {
-		System.out.println("checks if object is equal to another object (function)");
+		System.out.println("*checks if object is equal to another object (function)");
 		Monom m = new Monom (0,0);
 		function f = new Monom (0,0);
-		System.out.println(m.equals(f));
+		System.out.println(m.equals(f)+"\n");
+		assertEquals(m,f);
 	}
 
 

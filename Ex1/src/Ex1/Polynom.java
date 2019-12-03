@@ -46,8 +46,8 @@ public class Polynom implements Polynom_able {
 	public Polynom(String s) {
 		if(s.isEmpty()) 
 		{
-			System.err.println("Matan is the man");
-			return;
+			Monom o = new Monom("");
+			add(o);
 //			System.err.println("Please insert Monom: ax^b (a,b parameters)");
 //			return ;
 		}
@@ -104,15 +104,7 @@ public class Polynom implements Polynom_able {
 				p.add(m1);
 		} else if (m1.get_coefficient() != 0)
 			p.add(m1); // if its from the form 0x^n when n in N then no need to add zero, so it's ok
-		// for the list to remain empty
-//		else if(m1.isZero()) {
-//			p.add(new Monom(0,0));
-//		}
 		p.sort(comp);
-//		Monom last=new Monom(p.get(p.size() - 1));
-//		
-//		if(last.isZero()&&p.get(0) == last)
-//			p.remove(p.get(p.size() - 1));
 	}
 
 	@Override

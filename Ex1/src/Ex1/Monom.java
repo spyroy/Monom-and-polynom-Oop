@@ -79,7 +79,10 @@ public class Monom implements function {
 
 		try {
 			if(s.isEmpty()) {
-				this.set_coefficient(0); this.set_power(0);}
+				this.set_coefficient(0);
+				this.set_power(0);
+				return;
+			}
 
 			if (s.charAt(0) == '+' && s.charAt(1) == 'x')
 				s = "1" + s.substring(1);
