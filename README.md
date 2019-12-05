@@ -1,3 +1,5 @@
+#to do: InitFromString, fix isZero, fix Operation to himself (all in ComplexFunction).
+
 # this project deals with Monom and Polynom.
 
 ## Monom: in this project Monom most be of shape +-ax\X^b where 'a' is double and 'b' Integer (https://en.wikipedia.org/wiki/Monomial)
