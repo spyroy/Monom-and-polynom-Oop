@@ -65,10 +65,7 @@ public class ComplexFunction implements complex_function
 		this.o=o;
 		if(right!=null)
 			this.right=right;
-		else {
-			this.right = null;
-			this.o = Operation.None;
-		}
+		
 	}
 	
 	public ComplexFunction(function left, String o, function right) 
@@ -128,77 +125,98 @@ public class ComplexFunction implements complex_function
 	}
 	
 	/****************Using different operators for determine the situation in the tree*****************************/
-	
+	// need to fix plus to himself (cf.plus(cf)) do to all operations
 	public void plus(function f1)
 	{
-		o=Operation.Plus;
-		//Assuming there is a function left, we need to add (plus) function right
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Plus;
 	}
 	
 	public void mul(function f1)
 	{
-		o=Operation.Times;
-		//Assuming there is a function left, we need to mul (times) function right
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Times;
 	}
 	
 	public void div(function f1) 
 	{
 		//TODO exception when f1 represents the ZERO function f(x)=0 (need to be checked by JUNIT tests)
-		o=Operation.Divid;
+		//o=Operation.Divid;
 		//Assuming there is a function left, we need to mul (times) function right
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Divid;
 	}
 	
 	public void max(function f1) 
 	{
-		o=Operation.Max;
-		//Assuming there is a function left, we need to mul (times) function right
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Max;
 	}
 	
 	public void min(function f1)
 	{
-		o=Operation.Min;
-		//Assuming there is a function left, we need to mul (times) function right
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Min;
 	}
 	
 	public void comp(function f1) 
 	{
-		o=Operation.Comp;
+		Operation op = o;
 		if ( right != null )
 		{
 			function fLeft =new ComplexFunction(left, o,right);
 			left = fLeft;
+			function fRight =new ComplexFunction(f1, op,null);
+			right=fRight;
 		}
-		right=f1;
+		else
+			right=f1;
+		o=Operation.Comp;
 	}
 	//*****************Matan's part*********************************
 	/*--------------------------------------------------------------*/
@@ -312,18 +330,34 @@ public class ComplexFunction implements complex_function
 
 	@Override
 	public String toString() {
-		switch(o) {
-		case Plus  :return "Plus(" + this.right.toString() + "," + this.left.toString();
-		case Times : return "Times(" + this.right.toString() + "," + this.left.toString();
-		case Divid :return "Divid(" + this.right.toString() + "," + this.left.toString();
-		case Max   :return "Max(" + this.right.toString() + "," + this.left.toString();
-		case Min   :return "Min(" + this.right.toString() + "," + this.left.toString();
-		case Comp  :return "Comp(" + this.right.toString() + "," + this.left.toString();
-		case None  :return "None(" + this.right.toString() + "," + this.left.toString();
-		default      :throw new RuntimeException("not a good operation");
+		while (right != null) {
+			switch (o) {
+			case Plus:
+				return "Plus(" + this.left.toString() + "," + this.right.toString() + ")"; 
+			case Times:
+				return "Times(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			case Divid:
+				return "Divid(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			case Max:
+				return "Max(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			case Min:
+				return "Min(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			case Comp:
+				return"Comp(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			case None:
+				return "None(" + this.left.toString() + "," + this.right.toString()+ ")"; 
+			default:
+				throw new RuntimeException("not a good operation");
+			
+		}}
+		return this.left.toString();
+		
 		}
-	}
+	
 
+
+	
+	
 
 	@Override
 	public function left() 
@@ -338,8 +372,15 @@ public class ComplexFunction implements complex_function
 	}
 	
 	public static void main(String[] args) {
-		function cf = new Monom();
-		cf = cf.initFromString("x^3");
+		Polynom p = new Polynom ("x^5");
+		Polynom m = new Polynom ("x^7");
+		ComplexFunction n = new ComplexFunction(m);
+		ComplexFunction cf = new ComplexFunction(p,"None",m);
+		System.out.println(cf.f(1));
+		Polynom s = new Polynom ("x^9");
+		cf.plus(n);
+		cf.div(s);
+		//cf = cf.initFromString("x^3");
 		System.out.println(cf.toString());
 	}
 
