@@ -61,6 +61,8 @@ public class ComplexFunction implements complex_function
 	
 	public ComplexFunction(function left, Operation o, function right) 
 	{
+		if(o == Operation.None)
+			throw new RuntimeException("Operation cannot be None between to functions");
 		this.left=left;
 		this.o=o;
 		if(right!=null)
@@ -70,6 +72,9 @@ public class ComplexFunction implements complex_function
 	
 	public ComplexFunction(function left, String o, function right) 
 	{
+		o = o.toUpperCase();
+		if(o.equals("NONE"))
+			throw new RuntimeException("Operation cannot be None between to functions");
 		this.left=left;
 		if(right!=null)
 			this.right=right;
@@ -323,7 +328,7 @@ public class ComplexFunction implements complex_function
 	return cf;
 	}
 	
-	// this function will work only in specific range
+	//  to do , this function will work only in specific range
 	public boolean equals(Object obj) {
 		return false;
 	}
