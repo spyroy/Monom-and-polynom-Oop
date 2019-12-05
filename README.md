@@ -1,4 +1,4 @@
-#to do: InitFromString, fix isZero, fix Operation to himself (all in ComplexFunction).
+# to do: InitFromString, fix isZero, fix Operation to himself (all in ComplexFunction).
 
 # this project deals with Monom and Polynom.
 
