@@ -1,10 +1,5 @@
 package Ex1;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class ComplexFunction implements complex_function  
 {
@@ -46,9 +41,10 @@ public class ComplexFunction implements complex_function
 	/*****************************Constructors*******************************/
 	
 	// default constructor
-	public ComplexFunction () {
+	public ComplexFunction () 
+	{
 		left = new Polynom();
-		o = Operation .None;
+		o = Operation.None;
 		right = null;
 	}
 	
@@ -56,13 +52,14 @@ public class ComplexFunction implements complex_function
 	{
 		//In this case the program gets only one function with no operator, so we need to initialize it to be left.
 		left=f;
+		right=null;
 		o = Operation.None;
 	}
 	
 	public ComplexFunction(function left, Operation o, function right) 
 	{
 		if(o == Operation.None)
-			throw new RuntimeException("Operation cannot be None between to functions");
+			throw new RuntimeException("Operation cannot be None between two functions");
 		this.left=left;
 		this.o=o;
 		if(right!=null)
@@ -74,11 +71,11 @@ public class ComplexFunction implements complex_function
 	{
 		o = o.toUpperCase();
 		if(o.equals("NONE"))
-			throw new RuntimeException("Operation cannot be None between to functions");
+			throw new RuntimeException("Operation cannot be None between two functions");
 		this.left=left;
 		if(right!=null)
 			this.right=right;
-		switch(o.toUpperCase())
+		switch(o)
 		{
 		case "PLUS"  :this.o = Operation.Plus; 	break;
 		case "TIMES" :
@@ -97,38 +94,36 @@ public class ComplexFunction implements complex_function
 	public ComplexFunction(String s)
 	{	//Assuming the given string is valid
 		
-		//TODO 
-		function check = initFromString(s);
-		ComplexFunction cf = (ComplexFunction)check;
-		this.left = cf.left();
-		this.right = cf.right();
-		this.o = cf.getOp();
-		
+		ComplexFunction cf=new ComplexFunction();
+		cf=(ComplexFunction) initFromString(s);
+		left=cf.left;
+		o=cf.o;
+		right=cf.right;
 	}
 	
 	/*******************************************************************************/
 	/*****************************END OF CONSTRUCTORS*******************************/
 	/*******************************************************************************/
 	
-	public boolean isZero(function fRight)//Useful function for checking if right side of function equals to the ZERO function
-	{
-		if(fRight==null)
-			return false;
-		if(fRight instanceof Polynom)
-		{
-			Polynom p=new Polynom();
-			if(p.equals((Polynom)fRight))
-					return true;
-		}
-		else if(fRight instanceof Monom)
-		{
-			Monom m=new Monom();
-			if(m.equals((Monom)fRight))
-					return true;
-		}
-		return false;
-	}
-	
+//	public boolean isZero(function fRight)//Useful function for checking if right side of function equals to the ZERO function
+//	{
+//		if(fRight==null)
+//			return false;
+//		if(fRight instanceof Polynom)
+//		{
+//			Polynom p=new Polynom();
+//			if(p.equals((Polynom)fRight))
+//					return true;
+//		}
+//		else if(fRight instanceof Monom)
+//		{
+//			Monom m=new Monom();
+//			if(m.equals((Monom)fRight))
+//					return true;
+//		}
+//		return false;
+//	}
+//	
 	/****************Using different operators for determine the situation in the tree*****************************/
 	// need to fix plus to himself (cf.plus(cf)) do to all operations
 	public void plus(function f1)
@@ -163,8 +158,23 @@ public class ComplexFunction implements complex_function
 	
 	public void div(function f1) 
 	{
-		//TODO exception when f1 represents the ZERO function f(x)=0 (need to be checked by JUNIT tests)
-		//o=Operation.Divid;
+		//exception when f1 represents the ZERO function f(x)=0 (need to be checked by JUNIT tests)
+		if(f1 instanceof Polynom)
+		{
+			Polynom p=new Polynom();
+			if(f1.equals(p))
+			{
+				throw new RuntimeException("Cannot divide by ZERO");
+			}
+		}
+		if(f1 instanceof Monom)
+		{
+			Monom m = new Monom();
+			if(f1.equals(m))
+			{
+				throw new RuntimeException("Cannot divide by ZERO");
+			}
+		}
 		//Assuming there is a function left, we need to mul (times) function right
 		Operation op = o;
 		if ( right != null )
@@ -273,7 +283,8 @@ public class ComplexFunction implements complex_function
 		s = s.substring(s.indexOf('(') + 1);
 		s = s.substring(0, s.length()-1);
 		Operation o = Operation.None;
-		switch (op) {
+		switch (op) 
+		{
 		case "PLUS":
 			o = Operation.Plus;
 			break;
@@ -329,7 +340,8 @@ public class ComplexFunction implements complex_function
 	}
 	
 	//  to do , this function will work only in specific range
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) 
+	{
 		return false;
 	}
 
@@ -380,11 +392,12 @@ public class ComplexFunction implements complex_function
 		Polynom p = new Polynom ("x^5");
 		Polynom m = new Polynom ("x^7");
 		ComplexFunction n = new ComplexFunction(m);
-		ComplexFunction cf = new ComplexFunction(p,"None",m);
+		ComplexFunction cf = new ComplexFunction(p,"Plus",m);
 		System.out.println(cf.f(1));
 		Polynom s = new Polynom ("x^9");
 		cf.plus(n);
 		cf.div(s);
+		cf.div(new Monom(0,8));
 		//cf = cf.initFromString("x^3");
 		System.out.println(cf.toString());
 	}
