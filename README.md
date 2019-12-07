@@ -1,4 +1,4 @@
-# to do: InitFromString, fix Operation to himself (all in ComplexFunction).
+# to do: gui functions
 
 # this project deals with Monom and Polynom.
 
