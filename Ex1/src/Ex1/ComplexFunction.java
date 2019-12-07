@@ -105,92 +105,98 @@ public class ComplexFunction implements complex_function
 	/*****************************END OF CONSTRUCTORS*******************************/
 	/*******************************************************************************/
 	
-//	public boolean isZero(function fRight)//Useful function for checking if right side of function equals to the ZERO function
-//	{
-//		if(fRight==null)
-//			return false;
-//		if(fRight instanceof Polynom)
-//		{
-//			Polynom p=new Polynom();
-//			if(p.equals((Polynom)fRight))
-//					return true;
-//		}
-//		else if(fRight instanceof Monom)
-//		{
-//			Monom m=new Monom();
-//			if(m.equals((Monom)fRight))
-//					return true;
-//		}
-//		return false;
-//	}
-//	
-	/****************Using different operators for determine the situation in the tree*****************************/
-	// need to fix plus to himself (cf.plus(cf)) do to all operations
+	/****************Using different operators for determine the situation in the "tree"*****************************/
 	public void plus(function f1)
 	{
-		Operation op = o;
-		if ( right != null )
+		if (f1 == this) 
 		{
-			function fLeft =new ComplexFunction(left, o,right);
-			left = fLeft;
-			function fRight =new ComplexFunction(f1, op,null);
-			right=fRight;
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.plus(cf);
 		}
-		else
-			right=f1;
-		o=Operation.Plus;
+		else 
+		{
+			Operation op = o;
+			if (right != null) {
+				function fLeft = new ComplexFunction(left, o, right);
+				left = fLeft;
+				function fRight = new ComplexFunction(f1, op, null);
+				right = fRight;
+			} else
+				right = f1;
+			o = Operation.Plus;
+		}
 	}
 	
 	public void mul(function f1)
 	{
-		Operation op = o;
-		if ( right != null )
+		if (f1 == this) 
 		{
-			function fLeft =new ComplexFunction(left, o,right);
-			left = fLeft;
-			function fRight =new ComplexFunction(f1, op,null);
-			right=fRight;
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.mul(cf);
+		} else {
+			Operation op = o;
+			if (right != null) 
+			{
+				function fLeft = new ComplexFunction(left, o, right);
+				left = fLeft;
+				function fRight = new ComplexFunction(f1, op, null);
+				right = fRight;
+			} else
+				right = f1;
+			o = Operation.Times;
 		}
-		else
-			right=f1;
-		o=Operation.Times;
 	}
 	
 	public void div(function f1) 
 	{
-		//exception when f1 represents the ZERO function f(x)=0 (need to be checked by JUNIT tests)
-		if(f1 instanceof Polynom)
+		if (f1 == this) 
 		{
-			Polynom p=new Polynom();
-			if(f1.equals(p))
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.div(cf);
+		} 
+		else 
+		{
+			// exception when f1 represents the ZERO function f(x)=0 (need to be checked by
+			// JUNIT tests)
+			if (f1 instanceof Polynom) 
 			{
-				throw new RuntimeException("Cannot divide by ZERO");
+				Polynom p = new Polynom();
+				if (f1.equals(p)) 
+				{
+					throw new RuntimeException("Cannot divide by ZERO");
+				}
 			}
-		}
-		if(f1 instanceof Monom)
-		{
-			Monom m = new Monom();
-			if(f1.equals(m))
+			if (f1 instanceof Monom) 
 			{
-				throw new RuntimeException("Cannot divide by ZERO");
+				Monom m = new Monom();
+				if (f1.equals(m)) 
+				{
+					throw new RuntimeException("Cannot divide by ZERO");
+				}
 			}
+			// Assuming there is a function left, we need to mul (times) function right
+			Operation op = o;
+			if (right != null) 
+			{
+				function fLeft = new ComplexFunction(left, o, right);
+				left = fLeft;
+				function fRight = new ComplexFunction(f1, op, null);
+				right = fRight;
+			} else
+				right = f1;
+			o = Operation.Divid;
 		}
-		//Assuming there is a function left, we need to mul (times) function right
-		Operation op = o;
-		if ( right != null )
-		{
-			function fLeft =new ComplexFunction(left, o,right);
-			left = fLeft;
-			function fRight =new ComplexFunction(f1, op,null);
-			right=fRight;
-		}
-		else
-			right=f1;
-		o=Operation.Divid;
 	}
 	
 	public void max(function f1) 
 	{
+		if (f1 == this) 
+		{
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.max(cf);
+		}
+		else 
+		{
 		Operation op = o;
 		if ( right != null )
 		{
@@ -202,137 +208,136 @@ public class ComplexFunction implements complex_function
 		else
 			right=f1;
 		o=Operation.Max;
+		}
 	}
 	
 	public void min(function f1)
 	{
-		Operation op = o;
-		if ( right != null )
+		if (f1 == this) 
 		{
-			function fLeft =new ComplexFunction(left, o,right);
-			left = fLeft;
-			function fRight =new ComplexFunction(f1, op,null);
-			right=fRight;
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.min(cf);
+		} 
+		else 
+		{
+			Operation op = o;
+			if (right != null) 
+			{
+				function fLeft = new ComplexFunction(left, o, right);
+				left = fLeft;
+				function fRight = new ComplexFunction(f1, op, null);
+				right = fRight;
+			}
+			else
+				right = f1;
+			o = Operation.Min;
 		}
-		else
-			right=f1;
-		o=Operation.Min;
 	}
 	
 	public void comp(function f1) 
 	{
-		Operation op = o;
-		if ( right != null )
+		if (f1 == this) 
 		{
-			function fLeft =new ComplexFunction(left, o,right);
-			left = fLeft;
-			function fRight =new ComplexFunction(f1, op,null);
-			right=fRight;
+			ComplexFunction cf = (ComplexFunction) f1.copy();
+			this.comp(cf);
+		} else 
+		{
+			Operation op = o;
+			if (right != null) 
+			{
+				function fLeft = new ComplexFunction(left, o, right);
+				left = fLeft;
+				function fRight = new ComplexFunction(f1, op, null);
+				right = fRight;
+			} else
+				right = f1;
+			o = Operation.Comp;
 		}
-		else
-			right=f1;
-		o=Operation.Comp;
 	}
 	//*****************Matan's part*********************************
 	/*--------------------------------------------------------------*/
 	// if the left/right is Monom/Polynom/ComplexFunction we use f(Monom/Polynom/ComplexFunction)
 	public double f(double x) 
 	{
-		switch(o)
+		while (right != null) 
 		{
-		case Plus  :return left.f(x) + right.f(x);
-		case Times : return left.f(x) * right.f(x);
-		case Divid :
-			if(right.f(x) != 0)
-				return left.f(x) / right.f(x);
-			System.err.println("cannot divide by zero");
-		case Max   :
-			double res = left.f(x) - right.f(x);
-			if(res<0)
-				return right.f(x);
-			return left.f(x);
-		case Min   :
-			double Res = left.f(x) - right.f(x);
-			if(Res<0)
+			switch (o) 
+			{
+			case Plus:
+				return left.f(x) + right.f(x);
+			case Times:
+				return left.f(x) * right.f(x);
+			case Divid:
+				if (right.f(x) != 0)
+					return left.f(x) / right.f(x);
+				System.err.println("cannot divide by zero");
+			case Max:
+				double res = left.f(x) - right.f(x);
+				if (res < 0)
+					return right.f(x);
 				return left.f(x);
-			return right.f(x);
-		case Comp  :return left.f(right.f(x));
-		case None  :return left.f(x);
-		default      :throw new RuntimeException("not a good operation");
+			case Min:
+				double Res = left.f(x) - right.f(x);
+				if (Res < 0)
+					return left.f(x);
+				return right.f(x);
+			case Comp:
+				return left.f(right.f(x));
+			case None:
+				return left.f(x);
+			default:
+				throw new RuntimeException("not a good operation");
+			}
 		}
+		return left.f(x);
 	}
-	
 	
 	
 	
 	// String of form: "Operation"("Polynom","Polynom") , (recursive)
-	// fix!!
 	public function initFromString(String s) {
-		if (!s.contains("(") && !s.contains(")")) {
-			this.left= new Polynom(s);
-			this.right=null;
-			this.o= Operation.None;
-			return this.left.initFromString(s);
-		}
-		s = s.toUpperCase();
-		s = s.replaceAll("X", "x");
-		String op = "";
-		if (s.charAt(0) == 'P' || s.charAt(0) == 'T' || s.charAt(0) == 'M' || s.charAt(0) == 'D' || s.charAt(0) == 'C'
-				|| s.charAt(0) == 'N')
-			op = new String(s.substring(0, s.indexOf('(')));
-		s = s.substring(s.indexOf('(') + 1);
-		s = s.substring(0, s.length()-1);
-		Operation o = Operation.None;
-		switch (op) 
+
+		try 
 		{
-		case "PLUS":
-			o = Operation.Plus;
-			break;
-		case "TIMES":
-		case "MUL":
-		case "MULT":
-			this.o = Operation.Times;
-			break;
-		case "DIVID":
-			o = Operation.Divid;
-			break;
-		case "MAX":
-			o = Operation.Max;
-			break;
-		case "MIN":
-			o = Operation.Min;
-			break;
-		case "COMP":
-			o = Operation.Comp;
-			break;
-		case "NONE":
-			o = Operation.None;
-			break;
-		default:
-			o = Operation.Error;
-			break;
+			if (!(s.contains("(") && s.contains(")"))) 
+			{
+				function f = new ComplexFunction(new Polynom(s));
+
+				return f;
+			}
+			int bracket = s.indexOf('(');
+			String o = s.substring(0, bracket);
+			String cut = s.substring(bracket + 1, s.length() - 1);
+			int open = 0;
+			int close = 0;
+			int c = 0;
+
+			for (int i = 0; i < cut.length(); i++) {
+				if (cut.charAt(i) == '(') {
+					open++;
+				} else if (cut.charAt(i) == ')') {
+					close++;
+				}
+				if (open == close && cut.charAt(i) == ',') { 
+					c = i;
+					i = cut.length();
+				}
+			}
+
+			function left = initFromString(cut.substring(0, c));
+			function right = initFromString(cut.substring(c + 1, cut.length()));
+
+			ComplexFunction cf = new ComplexFunction(left, o, right);
+
+			return cf;
+
+		} catch (Exception e) {
+			throw new RuntimeException("not a good string");
 		}
-
-//		if (o == Operation.Error) {
-//			if (s.contains(",")) {
-//				s = s.replaceAll(",", "");
-//				Polynom polL = new Polynom(s);
-//				this.left = polL;
-//				return this.left.initFromString(s);
-//			} else {
-//				Polynom polR = new Polynom(s);
-//				this.right = polR;
-//				return this.right.initFromString(s);
-//			}
-//		}
-
-		function nleft = initFromString(s.substring(0, s.indexOf(',') + 1));
-		function nright = initFromString(s.substring(s.indexOf(',') + 1));
-		function f = new ComplexFunction(nleft, o, nright);
-
-		return f;
-
 	}
+
+
+	
 	public function copy() 
 	{
 	ComplexFunction  cf = new ComplexFunction(left,o, right);
@@ -342,7 +347,35 @@ public class ComplexFunction implements complex_function
 	//  to do , this function will work only in specific range
 	public boolean equals(Object obj) 
 	{
+		if(obj instanceof Monom) 
+		{
+			Monom tmp=new Monom(obj.toString());
+			for (double i = -1000; i < 1000; i+=0.1) {
+				if(this.f(i)!=tmp.f(i))
+					return false;
+			}
+			return true;
+		}
+		if(obj instanceof Polynom) 
+		{
+			Polynom tmp=new Polynom(obj.toString());
+			for (double i = -1000; i < 1000; i+=0.1) {
+				if(this.f(i)!=tmp.f(i))
+					return false;
+			}
+			return true;
+		}
+		if(obj instanceof ComplexFunction) 
+		{
+			ComplexFunction tmp=(ComplexFunction)new ComplexFunction().initFromString(obj.toString());
+			for (double i = -1000; i < 1000; i+=0.1) {
+				if(this.f(i)!=tmp.f(i))
+					return false;
+			}
+			return true;
+		}
 		return false;
+		
 	}
 
 	@Override
@@ -395,11 +428,19 @@ public class ComplexFunction implements complex_function
 		ComplexFunction cf = new ComplexFunction(p,"Plus",m);
 		System.out.println(cf.f(1));
 		Polynom s = new Polynom ("x^9");
-		cf.plus(n);
+		cf.plus(cf);
 		cf.div(s);
-		cf.div(new Monom(0,8));
-		//cf = cf.initFromString("x^3");
-		System.out.println(cf.toString());
+		cf.div(new Monom(5,8));
+		System.out.println(cf.initFromString("plus(mul(x^3,x^4),plus(x^2,x^3))"));
+		System.out.println(cf.initFromString("min(min(min(min(plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0)"
+				+ ",plus(divid(+1.0x +1.0,mul(mul(+1.0x +3.0,+1.0x -2.0),+1.0x -4.0)),2.0))"
+				+ ",divid(plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0),-1.0x^4 +2.4x^2 +3.1))"
+				+ ",-1.0x^4 +2.4x^2 +3.1),+0.1x^5 -1.2999999999999998x +5.0)"));
+		ComplexFunction cf1 = new ComplexFunction(p,"Plus",m);
+		ComplexFunction cf2 = new ComplexFunction(p,"Plus",m);
+		boolean flag = cf1.equals(cf);
+		System.out.println(flag);
+		
 	}
 
 
