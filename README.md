@@ -1,4 +1,3 @@
-# to do: gui functions
 
 # this project deals with Monom and Polynom.
 
