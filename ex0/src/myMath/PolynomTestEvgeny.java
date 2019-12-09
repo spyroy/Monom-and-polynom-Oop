@@ -1,4 +1,4 @@
-package myMath;
+package Ex1;
 
 public class PolynomTestEvgeny {
 	static int fails = 0;
@@ -210,7 +210,7 @@ public class PolynomTestEvgeny {
 	public static void test7() throws Exception{ //test deep copy
 		System.out.println("******  Test7 : Copy and creat from string with space  ******");
 		Polynom_able p1 = new Polynom("-4.7x^2-1.0x+6.0");
-		Polynom_able p2 = p1.copy();
+		Polynom_able p2 = (Polynom_able) p1.copy();
 		if ( !p1.equals(p2)) {
 			fails++;
 			System.out.println("fail copy");
