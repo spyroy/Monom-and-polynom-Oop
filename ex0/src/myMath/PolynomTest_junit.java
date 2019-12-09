@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 
 import org.junit.jupiter.api.Test;
 
-class PolynomTestt {
+class PolynomTest_junit {
 	public static final double EPSILON = 0.0000001;
 	private static final DecimalFormat df = new DecimalFormat("#.0000");
 
