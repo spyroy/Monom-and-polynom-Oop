@@ -1,5 +1,5 @@
-package Ex1;
-
+package Ex1_testing;
+import Ex1.*;
 import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;

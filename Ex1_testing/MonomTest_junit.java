@@ -1,9 +1,13 @@
-package Ex1;
-
+package Ex1_testing;
+import Ex1.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import Ex1.Monom;
+import Ex1.Monom_Comperator;
+import Ex1.function;
 
 class MonomTest_junit {
 

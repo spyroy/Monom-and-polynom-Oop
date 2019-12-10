@@ -1,7 +1,10 @@
-package Ex1;
-
+package Ex1_testing;
+import Ex1.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+
+import Ex1.Monom;
+import Ex1.Monom_Comperator;
 
 /**
  * This class represents a simple (naive) tester for the Monom class, Note: <br>

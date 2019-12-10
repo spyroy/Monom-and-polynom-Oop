@@ -1,8 +1,13 @@
-package Ex1;
-
+package Ex1_testing;
+import Ex1.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import Ex1.ComplexFunction;
+import Ex1.Monom;
+import Ex1.Operation;
+import Ex1.Polynom;
 
 class ComplexFunctionTest {
 

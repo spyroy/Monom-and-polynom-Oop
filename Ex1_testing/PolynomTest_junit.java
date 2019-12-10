@@ -1,11 +1,12 @@
-package Ex1;
-
+package Ex1_testing;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
-
+import Ex1.*;
 import java.text.DecimalFormat;
 
 import org.junit.jupiter.api.Test;
+
+import Ex1.*;
 
 class PolynomTest_junit {
 	public static final double EPSILON = 0.0000001;
