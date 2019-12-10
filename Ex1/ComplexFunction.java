@@ -58,11 +58,13 @@ public class ComplexFunction implements complex_function
 	
 	public ComplexFunction( Operation o,function left, function right) 
 	{
-		if(o == Operation.None)
-		{
+		if(o == Operation.None) {
 			this.left=left;
 			return;
 		}
+//		if(o == Operation.Error) {
+//			throw new RuntimeException("blablabla");
+//		}
 		this.left=left;
 		this.o=o;
 		if(right!=null)
@@ -70,7 +72,7 @@ public class ComplexFunction implements complex_function
 		
 	}
 	
-	public ComplexFunction(String o,function left, function right) 
+	public ComplexFunction(String o,function left , function right) 
 	{
 		o = o.toUpperCase();
 		if(o.equals("NONE"))
@@ -85,14 +87,15 @@ public class ComplexFunction implements complex_function
 		case "MUL":
 		case "MULT":
 			this.o = Operation.Times; break;
-		case "DIVID": 
-		case "DIV":
-		case "DIVIDe":this.o = Operation.Divid; break;
+		case "DIVID" :
+		case "DIV" :
+		case "DIVIDe" :
+			this.o = Operation.Divid; break;
 		case "MAX"   :this.o = Operation.Max; 	break;
 		case "MIN"   :this.o = Operation.Min; 	break;
 		case "COMP"  :this.o = Operation.Comp; 	break;
 		case "NONE"  :this.o = Operation.None; 	break;
-		/*Error case*/default      :throw new RuntimeException("not a good operation");
+		default      :throw new RuntimeException("not a good operation");
 		}
 	}
 
@@ -122,9 +125,9 @@ public class ComplexFunction implements complex_function
 		{
 			Operation op = o;
 			if (right != null) {
-				function fLeft = new ComplexFunction(o,left, right);
+				function fLeft = new ComplexFunction(o, left, right);
 				left = fLeft;
-				function fRight = new ComplexFunction(op,f1, null);
+				function fRight = new ComplexFunction(op, f1, null);
 				right = fRight;
 			} else
 				right = f1;
@@ -142,9 +145,9 @@ public class ComplexFunction implements complex_function
 			Operation op = o;
 			if (right != null) 
 			{
-				function fLeft = new ComplexFunction(o,left, right);
+				function fLeft = new ComplexFunction(o, left, right);
 				left = fLeft;
-				function fRight = new ComplexFunction(op,f1, null);
+				function fRight = new ComplexFunction(op, f1, null);
 				right = fRight;
 			} else
 				right = f1;
@@ -183,9 +186,9 @@ public class ComplexFunction implements complex_function
 			Operation op = o;
 			if (right != null) 
 			{
-				function fLeft = new ComplexFunction(o,left, right);
+				function fLeft = new ComplexFunction(o, left, right);
 				left = fLeft;
-				function fRight = new ComplexFunction(op,f1, null);
+				function fRight = new ComplexFunction(op, f1, null);
 				right = fRight;
 			} else
 				right = f1;
@@ -205,9 +208,9 @@ public class ComplexFunction implements complex_function
 		Operation op = o;
 		if ( right != null )
 		{
-			function fLeft =new ComplexFunction(o,left,right);
+			function fLeft =new ComplexFunction(o, left,right);
 			left = fLeft;
-			function fRight =new ComplexFunction(op,f1,null);
+			function fRight =new ComplexFunction(op, f1,null);
 			right=fRight;
 		}
 		else
@@ -228,9 +231,9 @@ public class ComplexFunction implements complex_function
 			Operation op = o;
 			if (right != null) 
 			{
-				function fLeft = new ComplexFunction(o,left, right);
+				function fLeft = new ComplexFunction(o, left, right);
 				left = fLeft;
-				function fRight = new ComplexFunction(op,f1, null);
+				function fRight = new ComplexFunction(op, f1, null);
 				right = fRight;
 			}
 			else
@@ -250,9 +253,9 @@ public class ComplexFunction implements complex_function
 			Operation op = o;
 			if (right != null) 
 			{
-				function fLeft = new ComplexFunction(o,left, right);
+				function fLeft = new ComplexFunction(o, left, right);
 				left = fLeft;
-				function fRight = new ComplexFunction(op,f1, null);
+				function fRight = new ComplexFunction(op, f1, null);
 				right = fRight;
 			} else
 				right = f1;
@@ -332,7 +335,7 @@ public class ComplexFunction implements complex_function
 			function left = initFromString(cut.substring(0, c));
 			function right = initFromString(cut.substring(c + 1, cut.length()));
 
-			ComplexFunction cf = new ComplexFunction(o,left, right);
+			ComplexFunction cf = new ComplexFunction(o, left, right);
 
 			return cf;
 
