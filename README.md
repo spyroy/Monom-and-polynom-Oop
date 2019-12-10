@@ -1,3 +1,4 @@
+# to do: test to gui 
 
 # this project deals with Monom and Polynom.
 
