@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -242,13 +243,15 @@ public class Functions_GUI implements functions{
 			String m_y = j_array_y.get(0).toString();
 			String M_x = j_array_x.get(1).toString();
 			String M_y = j_array_y.get(1).toString();
-			Range rx = new Range(Integer.parseInt(m_x), Integer.parseInt(M_x));
-			Range ry = new Range(Integer.parseInt(m_y), Integer.parseInt(M_y));
+			Range rx = new Range(Double.parseDouble(m_x), Double.parseDouble(M_x));
+			Range ry = new Range(Double.parseDouble(m_y), Double.parseDouble(M_y));
 			drawFunctions((int)width, (int)height, rx, ry, (int)resolution);
 
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		} 
+
+		 
 	}
 }
