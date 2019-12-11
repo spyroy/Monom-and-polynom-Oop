@@ -1,6 +1,7 @@
 package Ex1_testing;
 import Ex1.*;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,57 +83,187 @@ class my_Functions_GUITest {
 
 	@Test
 	void testContains() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		assertTrue(f.contains(p1));
+		assertTrue(f.contains(p2));
+		assertTrue(f.contains(p2));
 	}
 
 	@Test
 	void testContainsAll() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		assertTrue(f.containsAll(r));
 	}
 
 	@Test
 	void testIsEmpty() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		assertFalse(f.isEmpty());
+		f.clear();
+		assertTrue(f.isEmpty());
 	}
 
 	@Test
 	void testIterator() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		Iterator<function> it = f.iterator();
+		assertEquals(it.next(), p1);
+		assertEquals(it.next(), p2);
+		assertEquals(it.next(), p3);
 	}
 
 	@Test
 	void testRemove() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		f.remove(p1);
+		assertFalse(f.contains(p1));
+		f.remove(p2);
+		assertFalse(f.contains(p2));
+		f.remove(p3);
+		assertFalse(f.contains(p3));
+		assertTrue(f.isEmpty());
 	}
 
 	@Test
 	void testRemoveAll() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		f.removeAll(r);
+		assertTrue(f.isEmpty());
 	}
 
 	@Test
 	void testRetainAll() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		f.addAll(r);
+		assertFalse(f.contains(p3));
+		assertTrue(f.contains(p2));
+		assertTrue(f.contains(p1));
 	}
 
 	@Test
 	void testSize() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToArray() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToArrayTArray() {
-		fail("Not yet implemented");
+		functions f = new Functions_GUI();
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		f.addAll(r);
+		assertEquals(3, 3, 0.0000000001);
+		f.remove(p3);
+		assertEquals(2, 2, 0.0000000001);
+		f.remove(p2);
+		assertEquals(1, 1, 0.0000000001);
+		f.remove(p1);
+		assertEquals(0, 0, 0.0000000001);
 	}
 
 	@Test
 	void testInitFromFile() {
-		fail("Not yet implemented");
+		functions data = new Functions_GUI();
+		String file = "function_file.txt";
+		String file2 = "function_file2.txt";
+		String s1 = "3.1 +2.4x^2 -x^4";
+		String s2 = "5 +2x -3.3x +0.1x^5";
+		String[] s3 = {"x +3","x -2", "x -4"};
+		Polynom p1 = new Polynom(s1);
+		Polynom p2 = new Polynom(s2);
+		Polynom p3 = new Polynom(s3[0]);
+		ArrayList<function> r = new ArrayList();
+		r.add(p1);
+		r.add(p2);
+		r.add(p3);
+		data.addAll(r);
+		try {
+			data.saveToFile(file);
+			Functions_GUI data2 = new Functions_GUI();
+			data2.initFromFile(file);
+			data.saveToFile(file2);
+		}
+		catch(Exception e) {e.printStackTrace();}
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		data.drawFunctions(1000,600,rx,ry,200);
 	}
 
 	@Test
