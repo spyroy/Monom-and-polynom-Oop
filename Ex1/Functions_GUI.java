@@ -1,6 +1,12 @@
 package Ex1;
 
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -9,15 +15,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.Reader;
-import java.awt.Color;
-import java.io.BufferedReader;
-import com.google.gson.Gson;
 
 public class Functions_GUI implements functions{
 	
@@ -99,12 +96,7 @@ public class Functions_GUI implements functions{
 	
 	
 	
-	/**
-	*for the collection of function we have in this file,
-	*we read a function (a line) from the file and and sending the String to initFromString
-	*and add to the collect (the private field in this class) 
-	*@param the name of the file we gone to read
-	*/
+	
 	@Override
 	public void initFromFile(String file) throws IOException {
 		
@@ -130,11 +122,7 @@ public class Functions_GUI implements functions{
 	
 	
 	
-	/**
-	*for the collection of function we have in this private field in the class,
-	*we save them into a file while for every function we moving for the next line in the file
-	*@param the name of the file we gone to create 
-	*/
+	
 	@Override
 	public void saveToFile(String file) throws IOException {
 		
@@ -161,15 +149,7 @@ public class Functions_GUI implements functions{
 			return;
 		}
 	}
-	/**
-	* create a gui window and draw the function for the current moment in private method collect
-	* @param width of the width of the gui window
-	* @param height of the height of the gui window
-	* @param rx the range of the x axis
-	* @param ry the range of the y axis
-	* @param resolution to determine the x step
-	* @return create gui a window that print the function in collect our private method 
-	*/
+	
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		if (width<=0) 
