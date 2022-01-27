@@ -29,7 +29,7 @@ specific range). (https://en.wikipedia.org/wiki/Zero_of_a_function)
 11) *derivative*, receives a Polynom and returns the derivative. (https://en.wikipedia.org/wiki/Derivative)
 12) *area*, returns the area below the function represented by the given Polynom based on rimann's integral, returns 0 if x0
 is bigger then x1 in the given area. (https://en.wikipedia.org/wiki/Riemann_integral)
-13) *multiply Monom*, receives Monom and multiply it by another Polynom by Polynomial arithmetic.
+13) *multiply Monom*, receives Monom and multiply it by another Polynom by Polynomial arithmetic. 
 
 #### this project was written by @Matan_Greenberg (206094815) and @Or_Mendel (315524389).
 
